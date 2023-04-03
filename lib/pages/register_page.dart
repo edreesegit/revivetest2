@@ -155,7 +155,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context); // dismiss the dialog box
-                        widget.showLoginPage(); // navigate to the login page
                       },
                       style: ElevatedButton.styleFrom(
                         textStyle: GoogleFonts.raleway(

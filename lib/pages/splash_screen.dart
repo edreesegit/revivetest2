@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../auth/main_page.dart';
+import 'package:revivetest2/auth/main_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -12,22 +11,50 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 4160), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => MainPage()));
-    });
+
+    _controller = AnimationController(vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Lottie.network(
-            'https://assets10.lottiefiles.com/packages/lf20_Q7WY7CfUco.json'),
+        child: Transform.scale(
+          scale: 6,
+          child: Lottie.network(
+            'https://assets2.lottiefiles.com/packages/lf20_W5Sk67.json',
+            controller: _controller,
+            onLoaded: (composition) {
+              // Configure the AnimationController with the duration of the
+              // Lottie file and start the animation.
+              _controller
+                ..duration = composition.duration
+                ..forward()
+                ..addListener(() {
+                  if (_controller.isCompleted) {
+                    // Navigate to the main page when the animation finishes.
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => MainPage()),
+                    );
+                  }
+                });
+            },
+          ),
+        ),
       ),
     );
   }

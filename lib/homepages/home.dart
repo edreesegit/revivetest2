@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:revivetest2/homepages/exercisedetailpages/heel_slides_exercise_page.dart';
 import 'package:revivetest2/homepages/exercisedetailpages/knee_extensions_page.dart';
 import 'package:revivetest2/homepages/exercisedetailpages/squats_exercise_page.dart';
-import 'package:revivetest2/pages/get_user_name.dart';
+import 'package:revivetest2/pages/get_user_info.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({Key? key}) : super(key: key);
@@ -13,6 +13,8 @@ class UserHome extends StatefulWidget {
   @override
   State<UserHome> createState() => _UserHomeState();
 }
+
+var firstNameWidget = GetUserInfo(component: UsernameComponent.firstName);
 
 class _UserHomeState extends State<UserHome> {
   @override
@@ -26,13 +28,15 @@ class _UserHomeState extends State<UserHome> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 10),
-              GetUserName(),
+              GetUserInfo(component: UsernameComponent.introFirstName),
               SizedBox(height: 20),
               Center(
                 child: Text(
-                  'Choose Your Exercise:',
+                  'Please Choose An Exercise:',
                   style: GoogleFonts.raleway(
                     fontSize: 24,
+                    color: Colors.lightGreen[800],
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
