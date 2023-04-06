@@ -21,8 +21,9 @@ class GetUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userUid = FirebaseAuth.instance.currentUser?.uid;
     final DatabaseReference usersRef =
-        FirebaseDatabase.instance.ref().child('users');
+        FirebaseDatabase.instance.ref().child('users/$userUid/user_data');
     final User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return Text('User not signed in');
@@ -34,12 +35,7 @@ class GetUserInfo extends StatelessWidget {
         final User? user = FirebaseAuth.instance.currentUser;
         if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
           final dynamic value = snapshot.data!.snapshot.value;
-          Map<dynamic, dynamic> userData = {};
-          value.forEach((key, value) {
-            if (user != null && user.uid == key) {
-              userData = value;
-            }
-          });
+          Map<dynamic, dynamic> userData = value;
           print(userData);
           final String firstName =
               userData.containsKey('first name') ? userData['first name'] : '';

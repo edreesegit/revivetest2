@@ -1,15 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 class SensorData {
-  final double accel_x,
-      accel_y,
-      accel_z,
-      gyro_x,
-      gyro_y,
-      gyro_z,
-      xAngle,
-      yAngle,
-      zAngle;
+  double accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z, xAngle, yAngle;
 
   SensorData({
     required this.accel_x,
@@ -20,7 +12,6 @@ class SensorData {
     required this.gyro_z,
     required this.xAngle,
     required this.yAngle,
-    required this.zAngle,
   });
 
   factory SensorData.fromRTDB(Map<String, dynamic> data) {
@@ -32,8 +23,7 @@ class SensorData {
         gyro_y: data['gyro_y'] ?? 0.0,
         gyro_z: data['gyro_z'] ?? 0.0,
         xAngle: data['xAngle'] ?? 0.0,
-        yAngle: data['yAngle'] ?? 0.0,
-        zAngle: data['zAngle'] ?? 0.0);
+        yAngle: data['yAngle'] ?? 0.0);
   }
   String fancyResults() {
     return 'accelX: ${accel_x.toStringAsFixed(2)}\n'
@@ -43,7 +33,6 @@ class SensorData {
         'gyroY: ${gyro_y.toStringAsFixed(2)}\n'
         'gyroZ: ${gyro_z.toStringAsFixed(2)}\n'
         'xAngle: ${xAngle.toStringAsFixed(2)}\n'
-        'yAngle: ${yAngle.toStringAsFixed(2)}\n'
-        'zAngle: ${zAngle.toStringAsFixed(2)}\n';
+        'yAngle: ${yAngle.toStringAsFixed(2)}\n';
   }
 }
