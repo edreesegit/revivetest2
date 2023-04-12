@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // If sign-in is successful, dismiss the loading circle and navigate to home page
       Navigator.of(context).pop();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       // If sign-in fails, dismiss the loading circle and show error message
       await Future.delayed(Duration(milliseconds: 500));
       Navigator.of(context).pop();
@@ -179,26 +179,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 10),
-              // sign in button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  onTap: signIn,
-                  child: Container(
+                child: ElevatedButton(
+                  onPressed: signIn,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
                     padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.lightGreen,
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Center(
-                      child: Text(
-                        'Sign In',
-                        style: GoogleFonts.raleway(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
+                    minimumSize: Size(double.infinity, 0),
+                  ),
+                  child: Text(
+                    'Sign In',
+                    style: GoogleFonts.raleway(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
                   ),
                 ),

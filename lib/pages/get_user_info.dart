@@ -32,11 +32,9 @@ class GetUserInfo extends StatelessWidget {
     return StreamBuilder<DatabaseEvent>(
       stream: usersRef.onValue,
       builder: (BuildContext context, AsyncSnapshot<DatabaseEvent> snapshot) {
-        final User? user = FirebaseAuth.instance.currentUser;
         if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
           final dynamic value = snapshot.data!.snapshot.value;
           Map<dynamic, dynamic> userData = value;
-          print(userData);
           final String firstName =
               userData.containsKey('first name') ? userData['first name'] : '';
 

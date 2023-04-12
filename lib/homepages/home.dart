@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,7 +75,7 @@ class ExerciseBox extends StatefulWidget {
   final String exerciseName;
   final Color color;
 
-  ExerciseBox({required this.exerciseName, required this.color});
+  ExerciseBox({super.key, required this.exerciseName, required this.color});
 
   @override
   _ExerciseBoxState createState() => _ExerciseBoxState();
